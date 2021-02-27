@@ -64,5 +64,5 @@ jobs:
       
       - name: Compile Sketch
         run: cd src 
-        && arduino-cli compile --fqbn ${{ matrix.fqbn }} --build-path ../build  ./Blink
-        && ls -la ../build  
+          && arduino-cli compile --fqbn ${{ matrix.fqbn }} --build-path ../build  ./Blink
+          && ls -la ../build  
