@@ -60,7 +60,7 @@ jobs:
       # in the build matrix.
 
       - name: Checkout repo
-      uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
       - name: Compile Sketch
         run: cd src && arduino-cli compile --fqbn ${{ matrix.fqbn }} ./Blink
