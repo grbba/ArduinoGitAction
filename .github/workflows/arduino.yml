@@ -32,7 +32,7 @@ jobs:
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
           - arduino-platform: "arduino:avr"
-            fqbn: "arduino:avr:megaatmega2560"
+            fqbn: "arduino:avr:mega:cpu=atmega2560"
  
     # This is the platform GitHub will use to run our workflow, we
     # pick Windows for no particular reason.
