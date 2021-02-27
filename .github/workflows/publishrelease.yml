@@ -4,7 +4,7 @@ on:
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-name: Upload Release Asset
+name: Upload Release Binary Sketch
 
 jobs:
   build:
@@ -16,9 +16,9 @@ jobs:
 
       - name:  Get latest sketch binaries
         uses: actions/download-artifact@master
-          with:
-            name: sketchbin
-            path: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
+        with:
+          name: sketchbin
+          path: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
 #      - name: Build project # This would actually build your project, using zip for an example artifact
 #        run: |
 #          zip --junk-paths sketchbin README.md
