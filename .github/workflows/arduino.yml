@@ -66,3 +66,11 @@ jobs:
         run: cd src 
           && arduino-cli compile --fqbn ${{ matrix.fqbn }} --build-path /home/runner/work/ArduinoGitAction/ArduinoGitAction/build  ./Blink
           && ls -la ../build  
+
+      - name: Upload sketch artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sketchbin
+          path: |
+            /home/runner/work/ArduinoGitAction/ArduinoGitAction/build/*.hex
+            /home/runner/work/ArduinoGitAction/ArduinoGitAction/build/*.elf
