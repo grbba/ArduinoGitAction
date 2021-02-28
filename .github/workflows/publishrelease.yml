@@ -6,11 +6,11 @@ on:
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-name: Upload Release Binary Sketch
+name: Release Binary Sketch
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Package Release Asset
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,11 +27,30 @@ jobs:
           repo: ${{github.repository}}
       - name: Show downloads
         run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
-      - name: Build release package # This would actually build your project, using zip for an example artifact
-        run: cd $HOME
-          && pwd
-          && zip --junk-paths sketchbin.zip /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*
-          && ls -la
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sketchbin
+          path: |
+            /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.hex
+            /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.elf
+            /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.bin
+  release:
+    name: Deploy Release Asset
+    runs-on: ubunu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        - uses: actions/checkout@v2
+      - name: Download artifact
+        - uses: actions/download-artifact@v2
+          with:
+            name: sketchbin
+            path: /home/runner
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: /home/runner
+        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -52,3 +71,4 @@ jobs:
           asset_path: /home/runner
           asset_name: sketchbin.zip
           asset_content_type: application/zip
+    
