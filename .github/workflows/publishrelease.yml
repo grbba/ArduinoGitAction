@@ -46,10 +46,10 @@ jobs:
           path: bin
           # Optional, defaults to current repo
           # repo: ${{github.repository}} 
-      - name: Package
-        run: chmod 777 bin
-          && cd bin 
-          && zip sketchbin *
+      # - name: Package
+       # run: chmod 777 bin
+         # && cd bin 
+         # && zip sketchbin *
           
       - name: Show downloads
         run: pwd && ls -R bin
