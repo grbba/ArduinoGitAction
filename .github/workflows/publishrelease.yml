@@ -64,7 +64,6 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
         id: sketchbin_release #upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
