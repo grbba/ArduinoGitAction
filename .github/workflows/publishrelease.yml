@@ -49,7 +49,7 @@ jobs:
           path: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: /home/runner
+        working-directory: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
