@@ -35,6 +35,10 @@ jobs:
             /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.hex
             /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.elf
             /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*.bin
+      - name: Package release artifact
+        run: |
+          cd /home/runner
+          zip --junk-paths sketchbin /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*
   release:
     name: Deploy Release Asset
     runs-on: ubuntu-latest
@@ -67,7 +71,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/sketchbin.zip
+          asset_path: /home/runner/sketchbin.zip
           asset_name: sketchbin.zip
           asset_content_type: application/zip
     
