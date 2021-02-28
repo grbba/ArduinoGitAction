@@ -52,7 +52,7 @@ jobs:
           && zip sketchbin *
           
       - name: Show downloads
-        run: ls -R bin
+        run: pwd && ls -R bin
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
