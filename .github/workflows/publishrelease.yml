@@ -47,8 +47,10 @@ jobs:
           # Optional, defaults to current repo
           # repo: ${{github.repository}} 
       - name: Package
-        run: cd bin 
+        run: chmod 777 bin
+          && cd bin 
           && zip sketchbin *
+          
       - name: Show downloads
         run: ls -R bin
       - name: Create Release
