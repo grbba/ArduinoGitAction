@@ -45,13 +45,12 @@ jobs:
           # Optional, directory where to extract artifact
           path: bin
           # Optional, defaults to current repo
-          # repo: ${{github.repository}}
-      - name: Show downloads
-        run: ls -R bin 
-          && cat bin/sha | grep $GITHUB_SHA
+          # repo: ${{github.repository}} 
       - name: Package
         run: cd bin 
           && zip bin sketchbin *
+      - name: Show downloads
+        run: ls -R bin
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
