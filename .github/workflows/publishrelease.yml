@@ -29,7 +29,9 @@ jobs:
         run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
       - name: Build release package # This would actually build your project, using zip for an example artifact
         run: cd $HOME
+          && pwd
           && zip --junk-paths sketchbin.zip /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin/*
+          && ls -la
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
