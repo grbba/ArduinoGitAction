@@ -43,7 +43,7 @@ jobs:
           # https://github.com/actions/download-artifact#download-all-artifacts
           name: sketchbin
           # Optional, directory where to extract artifact
-          path: bin
+          path: /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
           # Optional, defaults to current repo
           # repo: ${{github.repository}} 
       # - name: Package
@@ -52,9 +52,9 @@ jobs:
          # && zip sketchbin *
           
       - name: Show downloads
-        run: pwd && ls -R bin
+        run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
       - name: Create Release
-        id: create_release
+        id:  sketchbin_create #create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,7 +64,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        id: upload-release-asset 
+        id: sketchbin_create #upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
