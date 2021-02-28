@@ -48,7 +48,7 @@ jobs:
           # repo: ${{github.repository}} 
       - name: Package
         run: cd bin 
-          && zip bin sketchbin *
+          && zip sketchbin *
       - name: Show downloads
         run: ls -R bin
       - name: Create Release
