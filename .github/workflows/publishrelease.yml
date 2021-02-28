@@ -54,7 +54,7 @@ jobs:
       - name: Show downloads
         run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
       - name: Create Release
-        id:  sketchbin_create #create_release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,7 +64,8 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        id: sketchbin_create #upload-release-asset 
+        run: pwd && ls -R /home/runner/work/ArduinoGitAction/ArduinoGitAction/bin
+        id: sketchbin_release #upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
