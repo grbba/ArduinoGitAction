@@ -20,5 +20,5 @@ jobs:
     - name: Get Avrdude repo
       uses: actions/checkout@v2
       with:
-        name: arduino/avrdude-build-script
-        ref: refs/heads/release
+        repository: arduino/avrdude-build-script
+        ref: 6.3.0-arduino19
