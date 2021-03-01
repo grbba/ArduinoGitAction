@@ -1,0 +1,46 @@
+# This is the name of the workflow, visible on GitHub UI.
+name: avrdude compile
+ 
+# Here we tell GitHub to run the workflow when a commit
+# is pushed or a Pull Request is opened.
+on: 
+  push:
+    branches: 
+      - avrdude
+
+env:
+  CMAKE_VERSION: 3.18.3
+  NINJA_VERSION: 1.10.1
+  BUILD_TYPE: Release
+  CCACHE_VERSION: 3.7.7
+
+jobs:
+  build:
+    name: ${ { matrix.config.name } }
+    runs-on: ${ { matrix.config.os } }
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+            name: "Windows Latest MSVC", artifact: "Windows-MSVC.tar.xz",
+            os: windows-latest,
+            build_type: "Release", cc: "cl", cxx: "cl",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+          }
+        - {
+            name: "Ubuntu Latest GCC", artifact: "Linux.tar.xz",
+            os: ubuntu-latest,
+            build_type: "Release", cc: "gcc", cxx: "g++"
+          }
+        - {
+            name: "macOS Latest Clang", artifact: "macOS.tar.xz",
+            os: macos-latest,
+            build_type: "Release", cc: "clang", cxx: "clang++"
+          }
+    steps:
+    - name: Get Avrdude repo
+    - uses: actions/checkout@v2
+      with:
+        name: arduino/avrdude-build-script
+        ref: refs/heads/release
