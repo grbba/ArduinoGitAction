@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Environment
       run: |
-        && echo "Build for: "
+        echo "Build for: "
         && echo  ${{ matrix.os }}
     - name: Get Avrdude repo
       uses: actions/checkout@v2
