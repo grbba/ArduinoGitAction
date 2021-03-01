@@ -1,8 +1,5 @@
 on:
   push:
-    branches:
-      - main
-    # Sequence of patterns matched against refs/tags
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
@@ -10,7 +7,12 @@ name: Release Binary Sketch
 
 jobs:
   build:
-    name: Package Release Asset
+    # the actual build has happened by another action which is run in any case 
+    # there will be two compile actions one for master and one for all other branchess, essentially 
+    # the same except the second will not genertae an artifact for deployment as releases are only 
+    # done from master
+
+    name: Get Release Asset
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
