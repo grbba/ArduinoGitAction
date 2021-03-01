@@ -1,3 +1,5 @@
+# triggers when a tag is added on any branch
+
 on:
   push:
     tags:
